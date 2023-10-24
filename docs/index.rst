@@ -10,6 +10,7 @@ ARCADIA - Your Digital Playground
    :maxdepth: 2
    :caption: Contents:
 
+   user_documentation/getting_started.md
    projectmgmt/project_management.rst
    technical_documentation/technical_documentation.rst
 

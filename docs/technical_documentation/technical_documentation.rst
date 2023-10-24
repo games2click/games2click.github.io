@@ -8,4 +8,5 @@ Technical Documentation
    :caption: technical_documentation:
 
    architecture.md
+   development.md
    api/apis.md
