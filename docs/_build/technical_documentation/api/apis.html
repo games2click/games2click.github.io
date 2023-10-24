@@ -47,20 +47,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../technical_documentation.html">Technical Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">APIs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-game-api">new-game API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#functionality">Functionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user">User</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#register-user-api">register-user API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#username-taken-api">username-taken API</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#join-game-api">join-game API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Functionality</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#update-state-api">update-state API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Functionality</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#poll-state-api">poll-state API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Functionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#game">Game</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-game-api">new-game API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#join-game-api">join-game API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-state-api">update-state API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#poll-state-api">poll-state API</a></li>
 </ul>
 </li>
 </ul>
@@ -96,8 +92,47 @@
              
   <section id="apis">
 <h1>APIs<a class="headerlink" href="#apis" title="Permalink to this heading"></a></h1>
+<section id="user">
+<h2>User<a class="headerlink" href="#user" title="Permalink to this heading"></a></h2>
+<section id="register-user-api">
+<h3>register-user API<a class="headerlink" href="#register-user-api" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Register a new username</p>
+<ul>
+<li><p>Parameters: user-name</p></li>
+<li><p>Returns: ok/nok/already-taken</p></li>
+</ul>
+</li>
+</ul>
+<section id="functionality">
+<h4>Functionality<a class="headerlink" href="#functionality" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>stores user-name in the db</p></li>
+</ul>
+</section>
+</section>
+<section id="username-taken-api">
+<h3>username-taken API<a class="headerlink" href="#username-taken-api" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Checks if a username is already taken</p>
+<ul>
+<li><p>Parameters: user-name</p></li>
+<li><p>Returns: already-taken/free/error</p></li>
+</ul>
+</li>
+</ul>
+<section id="id1">
+<h4>Functionality<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>checks db if a username is already taken</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="game">
+<h2>Game<a class="headerlink" href="#game" title="Permalink to this heading"></a></h2>
 <section id="new-game-api">
-<h2>new-game API<a class="headerlink" href="#new-game-api" title="Permalink to this heading"></a></h2>
+<h3>new-game API<a class="headerlink" href="#new-game-api" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Frontend calls new-game endpoint</p>
 <ul>
@@ -106,8 +141,8 @@
 </ul>
 </li>
 </ul>
-<section id="functionality">
-<h3>Functionality<a class="headerlink" href="#functionality" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h4>Functionality<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>creates game-id</p></li>
 <li><p>stores game-id, game, player-name in db</p></li>
@@ -115,7 +150,7 @@
 </section>
 </section>
 <section id="join-game-api">
-<h2>join-game API<a class="headerlink" href="#join-game-api" title="Permalink to this heading"></a></h2>
+<h3>join-game API<a class="headerlink" href="#join-game-api" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Frontned calls join-game endpoint</p>
 <ul>
@@ -124,8 +159,8 @@
 </ul>
 </li>
 </ul>
-<section id="id1">
-<h3>Functionality<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h4>Functionality<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>checks if game-id exists</p></li>
 <li><p>adds player-name to game-id in db</p></li>
@@ -133,7 +168,7 @@
 </section>
 </section>
 <section id="update-state-api">
-<h2>update-state API<a class="headerlink" href="#update-state-api" title="Permalink to this heading"></a></h2>
+<h3>update-state API<a class="headerlink" href="#update-state-api" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Frontend calls update-state endpoint</p>
 <ul>
@@ -142,15 +177,15 @@
 </ul>
 </li>
 </ul>
-<section id="id2">
-<h3>Functionality<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h4>Functionality<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>see backend game module</p></li>
 </ul>
 </section>
 </section>
 <section id="poll-state-api">
-<h2>poll-state API<a class="headerlink" href="#poll-state-api" title="Permalink to this heading"></a></h2>
+<h3>poll-state API<a class="headerlink" href="#poll-state-api" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Frontend calls poll-state endpoint</p>
 <ul>
@@ -159,12 +194,13 @@
 </ul>
 </li>
 </ul>
-<section id="id3">
-<h3>Functionality<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h4>Functionality<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>checks if game-id exists</p></li>
 <li><p>returns game-state stored in db</p></li>
 </ul>
+</section>
 </section>
 </section>
 </section>
