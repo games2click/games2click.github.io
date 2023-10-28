@@ -6,18 +6,16 @@ For easier use dockerfiles for all components and a docker-compose file is suppl
 
 ## Get started using docker
 
-To run the Arcadia using docker follow these steps:
+The easiest way to get started is using Docker.
 
-- Build images locally
+Please make sure you have a working Docker environment installed before proceeding.
 
-  ```
-  docker-compose build
-  ```
+To run the application using docker a docker-compose file is supplied in the repository. Either clone the whole repository or download the docker-compose.yaml to your disk.
 
-- Run application
+The images are prebuilt, to start arcadia containers just run:
 
   ```
   docker-compose up
   ```
 
-  - The frontend application should now be reachable through [http://localhost](http://localhost) and **Hello World** should be displayed..
+The frontend application should now be reachable through [http://localhost](http://localhost) and **Hello World** should be displayed..
