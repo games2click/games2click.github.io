@@ -1,4 +1,6 @@
-# Development environment
+# Development
+
+## Development environment
 
 [Node.js](http://node.js) must be installed, at least version 18. 
 
@@ -30,3 +32,27 @@
   The browser will open the page at http://localhost:3000 and **Hello World** should be displayed.
 
 - _Optional:_ to run tests execute `npm test`
+
+## Build docker images
+
+There are two ways to build Arcadias docker images, ```docker-compose``` and ```docker build```.
+
+### docker-compose
+
+To build all containers simply run
+
+```
+docker-compose build
+```
+
+### docker build
+
+To build the images seperately invoke the following command in the repository root directory.
+
+This is an example to build the backend image:
+
+```
+docker build -f dockerfiles/backend/Dockerfile -t arcadia-backend:0.0.1alpha .
+```
+
+Replace all occurences of _backend_ with the names of the other containers.

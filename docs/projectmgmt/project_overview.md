@@ -13,7 +13,6 @@ Stefan Sedelmaier, Walter Reiner, Martin Novak, Michael Czak
 - Get a working docker environment [get docker](http://docs.docker.com)
 - Download Docker compose file [link](http://TODO:docker_compose_file)
 
-
 ## Must-have features
 
 - Modular architecture that allows adding games
@@ -33,7 +32,6 @@ Stefan Sedelmaier, Walter Reiner, Martin Novak, Michael Czak
 
 ## Technical specifications
 
-
 ### Backend
 
 - Python or JS
@@ -42,7 +40,6 @@ Stefan Sedelmaier, Walter Reiner, Martin Novak, Michael Czak
 
 - React.js
 - Material UI ([see mui.com](https://www.mui.com))
-
 
 ### Environment/Deployment
 
@@ -57,12 +54,6 @@ Stefan Sedelmaier, Walter Reiner, Martin Novak, Michael Czak
 >- CI/CD pipeline over gitlab 
 >- automated unit testing
 
-
 ## Philosophy
 
 - enforce test driven development
-
-
-## Licensing
-
-- GNU Public License v3
