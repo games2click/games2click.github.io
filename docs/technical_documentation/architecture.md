@@ -8,47 +8,64 @@ Please click the wireframe diagram to get a high resolution of the diagram.
 
 ## UML sequence diagram
 
-```plantuml
+@plantuml
 
+```plantuml
+!pragma teoz true
 skinparam sequenceMessageAlign center
 
 actor User
-boundary Frontend
+boundary "React\nFrontend"
 participant Backend
 
 == Dashboard ==
-User -> Frontend : GET /
-Frontend -> Backend : GET /api/games
-return <back:plum>games</back>
+User -> "React\nFrontend" : GET /
+"React\nFrontend" -> Backend++ : GET /api/games
+Backend -> Backend: get games
+Backend -> "React\nFrontend"--: <back:plum>games</back>
 
 loop games.length
-  Frontend -> Backend : GET /api/games/<game_name>
-  return <back:plum>game_card</back>
+  "React\nFrontend" -> Backend++ : GET /api/games/<game_name>
+  Backend -> Backend: construct\ngame card
+  Backend -> "React\nFrontend"--: <back:plum>game_card</back>
 end
-rnote over Frontend: render dashboard
+rnote over "React\nFrontend": render dashboard
 
 == Start Game ==
 rnote over User: clicks on game_card
-Frontend -> Backend: POST /api/games/<game_name>
-return <back:plum>game_id</back>
+User -> "React\nFrontend" : GET /new/<game_name>
+"React\nFrontend" -> Backend++: POST /api/games/<game_name>
+Backend -> Backend: instantiate\nnew game\n\n+ game url/hash
+Backend -> "React\nFrontend"--:  <back:plum>game_data</back>
 
-rnote over Frontend: render invite screen
+rnote over "React\nFrontend": render invite screen
 
-note left of User
-  - sends <player_url>/b to
+rnote over User
+  - sends second <player_url> to
   second participant
   - clicks "Start Game"
 end note
 
 == Play Game ==
 
-Frontend -> Backend: GET /api/games/<game_name>/<game_id>/{a|b}
-return <back:plum>game_data</back>
-alt#Gold #LightBlue your_turn
-  Frontend --> User: enable POST
-else #Pink !your_turn
-  Frontend --> User: render watch-only
+User -> "React\nFrontend" : GET /play/<player_url>
+loop while game not finished
+"React\nFrontend" -> Backend++: GET /api/games/<player_url>
+  Backend -> Backend: get game\nstate
+  Backend --> "React\nFrontend"--:  <back:plum>game_state</back>
+  alt#Gold #LightBlue your_turn
+    rnote over "React\nFrontend": enable interaction
+    User -> "React\nFrontend": Interaction
+    "React\nFrontend" --> Backend++: PUT /api/games/<player_url>
+    Backend -> Backend: valid move?
+    Backend --> "React\nFrontend"--: HTTP reponse move ok?
+  else #Pink !your_turn
+    rnote over "React\nFrontend": render watch-only
+  end
 end
+
+
+
 
 ```
 ### Objects
@@ -60,7 +77,7 @@ end
   "games": [
     "tictactoe",
     "fourinarow",
-    "chess",
+    "chess"
     ]
 }
 ```
@@ -71,38 +88,42 @@ end
 {
   "name": "Tic Tac Toe",
   "description": "Super colles Tic Taco Toe",
-  "thumbnail": "url",
+  "thumbnail": "url"
 }
 ```
 
-#### game_id 
-
-```int
-unique int id
-```
-
-#### game_url 
-```
-/api/games/<game_name>/<game_id>
-```
-
-#### game_data
+#### game_data 
 
 ```json
 {
-  "game_data": {
-    "game_state": [
-      ["", "x", ""],
-      ["o", "x", ""],
-      ["x", "o", "o"]
+  "game_data": [
+    {
+      "player_url":  "url player a",
+      "symbol": "x"
+    },{
+      "player_url":  "url player b",
+      "symbol": "o"
+    }
+  ]
+}
+```
+
+#### player_url 
+```
+<game_name>/<game_id>/<player> -> hash
+```
+
+#### game_state
+
+```json
+{
+  "game_state": {
+    "turns": [
+      {"row": 2, "col": 2, "value": "a"},
+      {"row": 1, "col": 1, "value": "b"}
       ],
-    "your_turn": bool,
-    "game_history": [
-      {"row": 2, "col": 2, "value": "x"},
-      {"row": 1, "col": 1, "value": "o"},
-      ],
-    "started_at": dataTime,
-    "expires": dateTime,
+    "started_at": "Date",
+    "expires": "Date"
   }
 }
 ```
