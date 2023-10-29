@@ -1,16 +1,101 @@
 # Architecture
 
+## Wireframe
+
+[!["Wireframe of Arcadia"](wireframe/arcadia_wireframe.png "Wireframe of Arcadia")](wireframe/arcadia_wireframe.png)
+
+Please click the wireframe diagram to get a high resolution of the diagram.
+
+## UML sequence diagram
+
+```plantuml
+
+skinparam sequenceMessageAlign center
+
+actor User
+boundary Frontend
+participant Backend
+
+== Dashboard ==
+User -> Frontend : GET /
+Frontend -> Backend : GET /api/games
+return <back:plum>games</back>
+
+loop games.length
+  Frontend -> Backend : GET /api/games/<game_name>
+  return <back:plum>game_card</back>
+end
+rnote over Frontend: render()
+
+== Start Game ==
+rnote over User: clicks on game_card
+Frontend -> Backend: POST /api/games/<game_name>
+return <back:plum>game_id</back>
+
+rnote over Frontend: render()
+
+note left of User
+  sends <player_url>/b to
+  second participant
+end note
+
+
+```
+### Objects
+
+#### games
+
+```json
+{
+  "games": [
+    "tictactoe",
+    "fourinarow",
+    "chess",
+    ]
+}
+```
+
+#### game_card 
+
+```json
+{
+  "name": "Tic Tac Toe",
+  "description": "Super colles Tic Taco Toe",
+  "thumbnail": "url",
+}
+```
+
+#### game_id 
+
+```int
+unique int id
+```
+
+#### game_url 
+```
+/api/games/<game_name>/<game_id>
+```
+
+api/games -> {
+  games: [
+    tictactoe,
+    fourinarow,
+    chess,
+    ]
+  }
+api/games/tictactoe -> {
+  name: "Tic Tac Toe",
+  description: "Super colles Tic Taco Toe",
+  thumbnail: "url",
+  }
+
+
+
 ## Frontend
 
 - nginx container
 - serves react pwa
 - per game directory with game logic and assets
-
-### Wireframe
-
-[!["Wireframe of Arcadia"](wireframe/arcadia_wireframe.png "Wireframe of Arcadia")](wireframe/arcadia_wireframe.png)
-
-Please click the wireframe diagram to get a high resolution of the diagram.
 
 ## Backend
 
