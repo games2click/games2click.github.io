@@ -25,20 +25,30 @@ loop games.length
   Frontend -> Backend : GET /api/games/<game_name>
   return <back:plum>game_card</back>
 end
-rnote over Frontend: render()
+rnote over Frontend: render dashboard
 
 == Start Game ==
 rnote over User: clicks on game_card
 Frontend -> Backend: POST /api/games/<game_name>
 return <back:plum>game_id</back>
 
-rnote over Frontend: render()
+rnote over Frontend: render invite screen
 
 note left of User
-  sends <player_url>/b to
+  - sends <player_url>/b to
   second participant
+  - clicks "Start Game"
 end note
 
+== Play Game ==
+
+Frontend -> Backend: GET /api/games/<game_name>/<game_id>/{a|b}
+return <back:plum>game_data</back>
+alt#Gold #LightBlue your_turn
+  Frontend --> User: enable POST
+else #Pink !your_turn
+  Frontend --> User: render watch-only
+end
 
 ```
 ### Objects
@@ -75,6 +85,29 @@ unique int id
 ```
 /api/games/<game_name>/<game_id>
 ```
+
+#### game_data
+
+```json
+{
+  "game_data": {
+    "game_state": [
+      ["", "x", ""],
+      ["o", "x", ""],
+      ["x", "o", "o"]
+      ],
+    "your_turn": bool,
+    "game_history": [
+      {"row": 2, "col": 2, "value": "x"},
+      {"row": 1, "col": 1, "value": "o"},
+      ],
+    "started_at": dataTime,
+    "expires": dateTime,
+  }
+}
+```
+
+
 
 api/games -> {
   games: [
