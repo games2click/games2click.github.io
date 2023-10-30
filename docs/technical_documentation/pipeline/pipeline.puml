@@ -1,0 +1,30 @@
+@startuml
+
+actor "Developer"
+component "git-iit"
+cloud "Sedelmaier"{
+    component "gitlab-runner"
+    component "nodejs build & test"
+    component "docker build & deploy"
+    component "ansible playbook"
+}
+
+cloud "Docker Hub"{
+    component "public repo"
+}
+
+cloud "Reiner"{
+    component "arcadia vm"
+}
+person "Web Browser"
+
+"Developer" -> "git-iit" : git push
+"git-iit" -r-> "gitlab-runner"
+"gitlab-runner" -> "nodejs build & test"
+"nodejs build & test" -d-> "docker build & deploy"
+"docker build & deploy" -d-> "public repo"
+"docker build & deploy" -l-> "ansible playbook"
+"ansible playbook" -d-> "arcadia vm"
+"arcadia vm" <- "public repo"
+"Web Browser" -u-> "arcadia vm"
+@enduml
