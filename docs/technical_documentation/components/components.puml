@@ -1,0 +1,7 @@
+@startuml
+node "Docker Compose" {
+    ["Gateway"] -r-> ["Frontend"]
+    ["Gateway"] -d-> ["Backend"]
+    ["Frontend"] -> ["Backend"]
+}
+@enduml

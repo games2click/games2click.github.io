@@ -1,16 +1,20 @@
 # Architecture
 
-## Frontend
+[!["service components"](components/components.svg "service components")](components/components.svg)
 
+### Gateway
 - nginx container
+mainly reverse proxy for fronted and backend
+
+### Frontend
 - serves react pwa
 - per game directory with game logic and assets
 
-## Backend
-
-- backend container
+###  Backend
+- node.js container
 - serves backend app through defined APIs
 - imports games dynamically from games-plugin directory
+
 
 ### Backend game-module
 
@@ -28,7 +32,7 @@
 
 #### Example
 
-```
+```javascript
 └── games-plugin
     └── TicTacToe
         └── TicTacToe.js
