@@ -4,7 +4,6 @@ The sequence diagram describes mainly the communication between any frontend and
 using http://react.dev ,for this reason the interaction between the actor "User" and the frontend is from a "react" 
 centered point of view.
 
-@plantuml
 ```plantuml
 !pragma teoz true
 skinparam sequenceMessageAlign center
@@ -61,7 +60,7 @@ end
 ```
 ## REST API resources and DTOs
 
-### `/api/games` (GET)
+### URL `/api/games` (get)
 
 Determine all possible game names. Each game has a short unique string identifier. 
 
@@ -77,7 +76,7 @@ Determine all possible game names. Each game has a short unique string identifie
 }
 ```
 
-### `/api/games/<game_name>` (GET)
+### URL `/api/games/<game_name>` (get)
 
 Construct a json representation of a single startable game. A game card contains a representative name, a brief 
 description a url to a thumbnail or logo of the game
@@ -91,7 +90,7 @@ description a url to a thumbnail or logo of the game
 }
 ```
 
-### `/api/games/<game_name>` (POST)
+### URL `/api/games/<game_name>` (post)
 
 Instantiate and starts a new game. When a game is started a unique game id is generated, also a unique player url is 
 for each possible player generated. These player urls are returned to frontend. The backend can decide if the player 
@@ -118,7 +117,7 @@ The post contains not http body or payload.
 }
 ```
 
-### `/api/games/<player_url>` (GET)
+### URL `/api/games/<player_url>` (get)
 
 Return the current state of the game data. Each game plugin is responsible to return the current state of its own game 
 in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so 
@@ -142,10 +141,10 @@ For easier understanding of the dtos example data of the game tic tac toe is use
   }
 }
 ```
-Field "won" is optional, if the game isn't yet finished, the field is not set or is empty.
+Field `won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
 
-### `/api/games/<player_url>` (PUT)
+### URL `/api/games/<player_url>` (put)
 Player does its move. The data of the move is sent to the backend. The backend validates the move and the game state is 
 updated. The frontend implementation is responsible to get the game state after this operation to determine the game 
 state after that move, for example if the current player won or the game is finished.  
@@ -159,4 +158,4 @@ For easier understanding of the dtos example data of the game tic tac toe is use
 {"row": 2, "col": 2}
 ```
 
-Happy playing!
+**Happy playing!**
