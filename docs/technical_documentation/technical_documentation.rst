@@ -7,5 +7,5 @@ Technical Documentation
    :maxdepth: 4
    :caption: technical_documentation:
 
-   architecture.md
+   architecture.rst
    development.md
