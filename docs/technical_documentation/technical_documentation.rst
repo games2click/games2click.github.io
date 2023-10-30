@@ -9,3 +9,4 @@ Technical Documentation
 
    architecture.rst
    development.md
+   ci-cd.rst
