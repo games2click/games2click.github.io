@@ -8,5 +8,6 @@ Technical Documentation
    :caption: technical_documentation:
 
    architecture.md
-   front-back-communication.md
+   front-back-communication.rst
    development.md
+   api/apis.md

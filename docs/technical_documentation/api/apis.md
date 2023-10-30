@@ -1,68 +1,99 @@
-# APIs
+# REST API resources and DTOs
 
-## User
+## URL `/api/games` (get)
 
-### register-user API
+Determine all possible game names. Each game has a short unique string identifier. 
 
-- Register a new username
-  - Parameters: user-name
-  - Returns: ok/nok/already-taken
+### DTO `games` (response) 
 
-#### Functionality
+```json
+{
+  "games": [
+    "tictactoe",
+    "fourinarow",
+    "chess"
+    ]
+}
+```
 
-- stores user-name in the db
+## URL `/api/games/<game_name>` (get)
 
-### username-taken API
+Construct a json representation of a single startable game. A game card contains a representative name, a brief 
+description a url to a thumbnail or logo of the game
 
-- Checks if a username is already taken
-  - Parameters: user-name
-  - Returns: already-taken/free/error
+### DTO `game_card` (response)
+```json
+{
+  "name": "Tic Tac Toe",
+  "description": "Super colles Tic Taco Toe",
+  "thumbnail": "url"
+}
+```
 
-#### Functionality
+## URL `/api/games/<game_name>` (post)
 
-- checks db if a username is already taken
+Instantiate and starts a new game. When a game is started a unique game id is generated, also a unique player url is 
+for each possible player generated. These player urls are returned to frontend. The backend can decide if the player 
+url contains clear text information of the player slug (```<game_name>/<game_id>/<player_id>```) or hash representation of 
+the player slug.
 
-## Game
+The frontend is responsible to send the player url to all participants.
 
-### new-game API
+The post contains not http body or payload.
 
-- Frontend calls new-game endpoint
-  - Parameters: game-name, player-name
-  - Returns: game-id (wordlist, uuid?)
+### DTO `game_data` (response)
 
-#### Functionality
+```json
+{
+  "game_data": [
+    {
+      "player_url":  "url player a",
+      "symbol": "x"
+    },{
+      "player_url":  "url player b",
+      "symbol": "o"
+    }
+  ]
+}
+```
 
-- creates game-id
-- stores game-id, game, player-name in db
+## URL `/api/games/<player_url>` (get)
 
-### join-game API
+Return the current state of the game data. Each game plugin is responsible to return the current state of its own game 
+in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so 
+the client can easily determine which player did the last move (the last entry in the turns array). The exact type of 
+of the entries in turns depends on the game. The game plugin can decide wich data is needed to play or view the next 
+move. The entries of turns array must contain player information so the frontend can decide if the current player can 
+do the current move or the player can only watch the current state of the game.
 
-- Frontned calls join-game endpoint
-  - Parameters: game-id, player-name
-  - Returns: ok/nok/not-found
+For easier understanding of the dtos example data of the game tic tac toe is used.
 
-#### Functionality
+### DTO `game_state` (response)
 
-- checks if game-id exists
-- adds player-name to game-id in db
+```json
+{
+  "game_state": {
+    "turns": [
+      {"row": 2, "col": 2, "value": "a"},
+      {"row": 1, "col": 1, "value": "b"}
+    ],
+    "player_won": "b"
+  }
+}
+```
+Field `won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
-### update-state API
 
-- Frontend calls update-state endpoint
-  - Parameters: game-id, player-name, player-move
-  - Returns: ok/nok/not-found/illegal-move
+## URL `/api/games/<player_url>` (put)
+Player does its move. The data of the move is sent to the backend. The backend validates the move and the game state is 
+updated. The frontend implementation is responsible to get the game state after this operation to determine the game 
+state after that move, for example if the current player won or the game is finished.  
+The frontend game plugin is responsible to send the data in a format the backend game plugin can understand.
 
-#### Functionality
+For easier understanding of the dtos example data of the game tic tac toe is used.
 
-- see backend game module
+### DTO `game_move` (request)
 
-### poll-state API
-
-- Frontend calls poll-state endpoint
-  - Parameters: game-id, player-name
-  - Returns: game-state/not-found
-
-#### Functionality
-
-- checks if game-id exists
-- returns game-state stored in db
+```json
+{"row": 2, "col": 2}
+```
