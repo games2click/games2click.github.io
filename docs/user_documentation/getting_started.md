@@ -13,7 +13,7 @@ Just run:
   docker-compose up
   ```
 
-The frontend application should now be reachable through [http://localhost](http://localhost) and **Hello World** should be displayed..
+The frontend application should now be reachable through [http://localhost](http://localhost) and **Hello World** should be displayed.
 
 ## Build docker images locally
 
@@ -26,7 +26,6 @@ To build the docker images locally you need to run:
 ## Run service components locally
 
 If you want to debug or develop arcadia componentsyou can run backend and frontend directly on your machine.
-
 
 - open a terminal and change to the _service_ directory install all node modules and start the backend server.
 
@@ -52,4 +51,3 @@ If you want to debug or develop arcadia componentsyou can run backend and fronte
   The browser will open the page at http://localhost:3000 and **Hello World** should be displayed.
 
 - _Optional:_ to run tests execute `npm test`
-
