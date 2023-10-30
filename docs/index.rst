@@ -12,6 +12,7 @@ ARCADIA - Your Digital Playground
 
    user_documentation/getting_started.md
    projectmgmt/project_management.rst
+   specifications/specifications.rst
    technical_documentation/technical_documentation.rst
 
 Indices and tables

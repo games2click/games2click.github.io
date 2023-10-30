@@ -1,14 +1,5 @@
 # Architecture
 
-## Wireframe
-
-[!["Wireframe of Arcadia"](wireframe/arcadia_wireframe.png "Wireframe of Arcadia")](wireframe/arcadia_wireframe.png)
-
-Please click the wireframe diagram to get a high resolution of the diagram.
-
-
-
-
 ## Frontend
 
 - nginx container

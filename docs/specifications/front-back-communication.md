@@ -1,5 +1,7 @@
 # Frontend to Backend Communication
 
+## UML sequence diagram
+
 The sequence diagram describes mainly the communication between any frontend and the backend service. Arcadia is 
 using [react.dev](http://react.dev) ,for this reason the interaction between the actor "User" and the frontend is from a "react" 
 centered point of view.
