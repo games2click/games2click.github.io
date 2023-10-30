@@ -133,15 +133,16 @@ For easier understanding of the dtos example data of the game tic tac toe is use
 ```json
 {
   "game_state": {
+    "my_symbol": "o"
     "turns": [
-      {"row": 2, "col": 2, "value": "a"},
-      {"row": 1, "col": 1, "value": "b"}
+      {"row": 2, "col": 2, "symbol": "x"},
+      {"row": 1, "col": 1, "symbol": "o"}
     ],
-    "player_won": "b"
+    "symbol_won": "x"
   }
 }
 ```
-Field `won` is optional, if the game isn't yet finished, the field is not set or is empty.
+Field `symbol_won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
 
 ### URL `/api/games/<player_url>` (put)
