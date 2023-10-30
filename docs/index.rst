@@ -11,7 +11,7 @@ ARCADIA - Your Digital Playground
    :caption: Contents:
 
    user_documentation/getting_started.md
-   projectmgmt/project_management.rst
+   projectmgmt/project_overview.md
    specifications/specifications.rst
    technical_documentation/technical_documentation.rst
 
