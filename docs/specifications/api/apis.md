@@ -1,20 +1,10 @@
-# Frontend to Backend Communication
+# REST API resources and DTOs
 
-## UML sequence diagram
-
-The sequence diagram describes mainly the communication between any frontend and the backend service. Arcadia is 
-using [react.dev](http://react.dev) ,for this reason the interaction between the actor "User" and the frontend is from a "react" 
-centered point of view.
-
-[!["API sequence diagram"](api-sequence/api-sequence.svg "API sequence")](api-sequence/api-sequence.svg)
-
-## REST API resources and DTOs
-
-### URL `/api/games` (get)
+## URL `/api/games` (get)
 
 Determine all possible game names. Each game has a short unique string identifier. 
 
-#### DTO `games` (response) 
+### DTO `games` (response) 
 
 ```json
 {
@@ -26,12 +16,12 @@ Determine all possible game names. Each game has a short unique string identifie
 }
 ```
 
-### URL `/api/games/<game_name>` (get)
+## URL `/api/games/<game_name>` (get)
 
 Construct a json representation of a single startable game. A game card contains a representative name, a brief 
 description a url to a thumbnail or logo of the game
 
-#### DTO `game_card` (response)
+### DTO `game_card` (response)
 ```json
 {
   "name": "Tic Tac Toe",
@@ -40,7 +30,7 @@ description a url to a thumbnail or logo of the game
 }
 ```
 
-### URL `/api/games/<game_name>` (post)
+## URL `/api/games/<game_name>` (post)
 
 Instantiate and starts a new game. When a game is started a unique game id is generated, also a unique player url is 
 for each possible player generated. These player urls are returned to frontend. The backend can decide if the player 
@@ -51,7 +41,7 @@ The frontend is responsible to send the player url to all participants.
 
 The post contains not http body or payload.
 
-#### DTO `game_data` (response)
+### DTO `game_data` (response)
 
 ```json
 {
@@ -67,7 +57,7 @@ The post contains not http body or payload.
 }
 ```
 
-### URL `/api/games/<player_url>` (get)
+## URL `/api/games/<player_url>` (get)
 
 Return the current state of the game data. Each game plugin is responsible to return the current state of its own game 
 in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so 
@@ -78,12 +68,12 @@ do the current move or the player can only watch the current state of the game.
 
 For easier understanding of the dtos example data of the game tic tac toe is used.
 
-#### DTO `game_state` (response)
+### DTO `game_state` (response)
 
 ```json
 {
   "game_state": {
-    "my_symbol": "o"
+    "my_symbol": "o",
     "turns": [
       {"row": 2, "col": 2, "symbol": "x"},
       {"row": 1, "col": 1, "symbol": "o"}
@@ -95,7 +85,7 @@ For easier understanding of the dtos example data of the game tic tac toe is use
 Field `symbol_won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
 
-### URL `/api/games/<player_url>` (put)
+## URL `/api/games/<player_url>` (put)
 Player does its move. The data of the move is sent to the backend. The backend validates the move and the game state is 
 updated. The frontend implementation is responsible to get the game state after this operation to determine the game 
 state after that move, for example if the current player won or the game is finished.  
@@ -103,7 +93,7 @@ The frontend game plugin is responsible to send the data in a format the backend
 
 For easier understanding of the dtos example data of the game tic tac toe is used.
 
-#### DTO `game_move` (request)
+### DTO `game_move` (request)
 
 ```json
 {"row": 2, "col": 2}
