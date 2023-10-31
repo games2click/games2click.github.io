@@ -18,13 +18,13 @@ Determine all possible game names. Each game has a short unique string identifie
 
 ## URL `/api/games/<game_name>` (get)
 
-Construct a json representation of a single startable game. A game card contains a representative name, a brief 
+Construct a json representation of a single startable game. A game card contains a representative title, a brief 
 description a url to a thumbnail or logo of the game
 
 ### DTO `game_card` (response)
 ```json
 {
-  "name": "Tic Tac Toe",
+  "title": "Tic Tac Toe",
   "description": "Super colles Tic Taco Toe",
   "thumbnail": "url"
 }
