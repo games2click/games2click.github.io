@@ -38,13 +38,13 @@ end note
 
 User -> "React\nFrontend" : GET /play/<player_url>
 loop while game not finished
-"React\nFrontend" -> Backend++: GET /api/games/<player_url>
+"React\nFrontend" -> Backend++: GET /api/play/<player_url>
   Backend -> Backend: get game\nstate
   Backend --> "React\nFrontend"--:  <back:plum>game_state</back>
   alt#Gold #LightBlue your_turn
     rnote over "React\nFrontend": enable interaction
     User -> "React\nFrontend": Interaction
-    "React\nFrontend" --> Backend++: PUT /api/games/<player_url>
+    "React\nFrontend" --> Backend++: PUT /api/play/<player_url>
     Backend -> Backend: valid move?
     Backend --> "React\nFrontend"--: HTTP reponse move ok?
   else #Pink !your_turn

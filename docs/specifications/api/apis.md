@@ -57,7 +57,7 @@ The post contains not http body or payload.
 }
 ```
 
-## URL `/api/games/<player_url>` (get)
+## URL `/api/play/<player_url>` (get)
 
 Return the current state of the game data. Each game plugin is responsible to return the current state of its own game 
 in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so 
@@ -85,7 +85,7 @@ For easier understanding of the dtos example data of the game tic tac toe is use
 Field `symbol_won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
 
-## URL `/api/games/<player_url>` (put)
+## URL `/api/play/<player_url>` (put)
 Player does its move. The data of the move is sent to the backend. The backend validates the move and the game state is 
 updated. The frontend implementation is responsible to get the game state after this operation to determine the game 
 state after that move, for example if the current player won or the game is finished.  
