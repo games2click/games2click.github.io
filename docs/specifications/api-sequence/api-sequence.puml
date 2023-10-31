@@ -29,24 +29,24 @@ Backend -> "React\nFrontend"--:  <back:plum>game_data</back>
 rnote over "React\nFrontend": render invite screen
 
 rnote over User
-  - sends second <player_url> to
+  - sends second <player_slug> to
   second participant
   - clicks "Start Game"
 end note
 
 == Play Game ==
 
-User -> "React\nFrontend" : GET /play/<player_url>
+User -> "React\nFrontend" : GET /play/<player_slug>
 loop while game not finished
-"React\nFrontend" -> Backend++: GET /api/play/<player_url>
+"React\nFrontend" -> Backend++: GET /api/play/<player_slug>
   Backend -> Backend: get game\nstate
   Backend --> "React\nFrontend"--:  <back:plum>game_state</back>
   alt#Gold #LightBlue your_turn
     rnote over "React\nFrontend": enable interaction
     User -> "React\nFrontend": Interaction
-    "React\nFrontend" --> Backend++: PUT /api/play/<player_url>
+    "React\nFrontend" --> Backend++: PUT /api/play/<player_slug>
     Backend -> Backend: valid move?
-    Backend --> "React\nFrontend"--: HTTP reponse move ok?
+    Backend --> "React\nFrontend"--: HTTP response move ok?
   else #Pink !your_turn
     rnote over "React\nFrontend": render watch-only
   end
