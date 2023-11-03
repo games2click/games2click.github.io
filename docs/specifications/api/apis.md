@@ -49,8 +49,7 @@ Instantiates and starts a new game.
 
 When a game is started a unique play id is generated. For each player a unique identifier is generated which is used to join a play or make a move on a play. These player identifiers are returned to frontend.
 
-The backend can decide if the player url contains clear text information of the player slug (```<game_name>/<game_id>/<player_id>```) or hash representation of 
-the player slug.
+The backend can decide if the player url contains clear text information of the player slug (```<game_name>/<game_id>/<player_id>```) or hash representation of the player slug.
 
 The frontend generates a complete URL containing the player identifier. The player starting the game is responsible to distribute the generated URLs to other players.
 
@@ -80,16 +79,16 @@ The POST request contains a JSON payload with the numerical id of the game which
 }
 ```
 
-## URL `/api/play/<player_slug>` (GET)
+## URL `/api/plays/get_game_state/<player_slug>` (GET)
 
-Return the current state of the game data. Each game plugin is responsible to return the current state of its own game 
-in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so 
-the client can easily determine which player did the last move (the last entry in the turns array). The exact type of 
-of the entries in turns depends on the game. The game plugin can decide wich data is needed to play or view the next 
-move. The entries of turns array must contain player information so the frontend can decide if the current player can 
-do the current move or the player can only watch the current state of the game.
+Return the current state of the game data.
 
-For easier understanding of the dtos example data of the game tic tac toe is used.
+Each game plugin is responsible to return the current state of its own game in a manner that frontend plugin can render all its information. "turns" represent all moves in sequential order, so
+the client can easily determine which player did the last move (the last entry in the turns array).
+
+The exact type of of the entries in turns depends on the game. The game plugin can decide wich data is needed to play or view the next move. The entries of turns array must contain player information so the frontend can decide if the current player can do the current move or the player can only watch the current state of the game.
+
+For easier understanding of the dtos example data of the game Tic-Tac-Toe is used.
 
 ### DTO `game_state` (response)
 
@@ -108,13 +107,18 @@ For easier understanding of the dtos example data of the game tic tac toe is use
 Field `symbol_won` is optional, if the game isn't yet finished, the field is not set or is empty.
 
 
-## URL `/api/play/<player_slug>` (put)
-Player does its move. The data of the move is sent to the backend. The backend validates the move and the game state is 
-updated. The frontend implementation is responsible to get the game state after this operation to determine the game 
-state after that move, for example if the current player won or the game is finished.  
-The frontend game plugin is responsible to send the data in a format the backend game plugin can understand.
+## URL `/api/plays/player_move/<player_slug>` (PATCH)
 
-For easier understanding of the dtos example data of the game tic tac toe is used.
+A player makes their move.
+
+Every game is responsible to determine what data it is expecting on a player move. Some games might only need a very simple structure while others might need more information on a player move.
+
+The data of the move is sent to the backend where the move is validated and the game state is updated.
+If the move is valid, the new game state is returned back to the frontend.
+
+The implementation of the game in the frontend interprets the new game state after the player move, it for instance updates the game display.
+
+For easier understanding of the DTOs example data of the game Tic-Tac-Toe is used.
 
 ### DTO `game_move` (request)
 
