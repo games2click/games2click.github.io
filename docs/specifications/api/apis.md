@@ -1,5 +1,23 @@
 # REST API resources and DTOs
 
+## URL `/api/games` (POST)
+
+Create a new game in the database after all prerequisites are met.
+
+The prerequisites for a game to be playable, the game plugin must be present in
+the `backend/src/plays/plugins` folder and it must be registered in the
+`loadPlugin` function in the file `backend/src/plays/plays.service.ts`.
+
+### DTO `games` (request)
+
+```json
+{
+  "name": "TicTacToe",
+  "active": true,
+  "number_of_players": 2
+}
+```
+
 ## URL `/api/games` (GET)
 
 Get a list of playable games (property `active` of game instance is true).
