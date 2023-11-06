@@ -42,7 +42,7 @@ There are two ways to build Arcadias docker images, ```docker-compose``` and ```
 To build all containers simply run
 
 ```
-docker-compose build
+docker compose -f docker-compose.yaml -f docker-compose-build.yaml build
 ```
 
 ### docker build
