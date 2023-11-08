@@ -33,8 +33,11 @@ To run the backend use the basic node container image `node:lts-alpine3.18`:
   ```
   $ cd arcadia/backend
   $ docker run --rm -it --entrypoint sh -v `pwd`:/work -w /work -p 3099:3099 node:lts-alpine3.18
+  npm install
   npm run start:dev
   ```
+
+Every time the container is started with `docker run` the `npm install` command must be run.
 
 With `start:dev` NodeJS will look for changes in the filesystem and recompile/reload the application
 when changes are made.
