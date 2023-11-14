@@ -9,4 +9,5 @@ Technical Documentation
 
    architecture.rst
    development.md
+   development_with_docker.md
    ci-cd.rst
