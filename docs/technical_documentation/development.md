@@ -21,9 +21,9 @@
   ```
 
 - open a terminal and change to the _service_ directory install all node modules and start the backend server.
-  Move and adapt `service/.env.example` to `service/.env`. The values of the variables must match the entries of `.env`   
+  Move and adapt `backend/.env.example` to `backend/.env`. The values of the variables must match the entries of `.env`   
   ```shell
-  cd service
+  cd backend
   npm install
   npm start
   ```
