@@ -47,7 +47,7 @@
 
 ## Build docker images
 
-There are two ways to build Arcadias docker images, ```docker-compose``` and ```docker build```.
+There are two ways to build Arcadia docker images, ```docker-compose``` and ```docker build```.
 
 ### docker-compose
 
