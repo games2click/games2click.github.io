@@ -11,6 +11,12 @@ In the root directory of the cloned repository start the database instance:
   docker run --rm --name arcadia_postgres -p 5432:5432 -v `pwd`/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=arcadiabe -e POSTGRES_DB=arcadiabe -e POSTGRES_PASSWORD=arcadiabe -d postgres:15.4
   ```
 
+**Note for Windows user:** In powershell use ```${PWD}``` instead of ``` `pwd` ```e.g.:
+  ``` 
+docker run --rm --name arcadia_postgres -p 5432:5432 -v ${PWD}/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=arcadiabe -e POSTGRES_DB=arcadiabe -e POSTGRES_PASSWORD=arcadiabe -d postgres:15.4
+  ```
+
+
 The env file for database connection for the backend must be named .env and be placed in root of backend, `arcadia/backend/.env`.
 
 For the above example it could look like the following:
@@ -43,6 +49,8 @@ With `start:dev` NodeJS will look for changes in the filesystem and recompile/re
 when changes are made.
 
 The backend is now available under <http://127.0.0.1:3099>.
+
+
 
 Please note that you don't need to preface the API urls with `/api/`. This is only necessary when running
 with nginx, so nginx knows to which reverse proxy backend it needs to forward the request.
