@@ -1,22 +1,34 @@
 # Development
 
+## Requirements
+
+* [Docker](http://docker.com) must be installed.
+* _Optional_: [Node.js](http://node.js) at least version 18. 
+
 ## Development environment
 
-[Node.js](http://node.js) must be installed, at least version 18. 
+- Clone this repository and change to root directory of the repository
 
-- Clone this repository
+  ```shell
+  git clone git@git-iit.fh-joanneum.at:swd22-hackathon/arcadia.git
+  cd arcadia
+  ```
 
-  `git clone git@git-iit.fh-joanneum.at:swd22-hackathon/arcadia.git`
+- start the database
+
+  ```shell
+  docker compose -f docker-compose.yaml -f docker-compose-build.yaml up --build database 
+  ```
 
 - open a terminal and change to the _service_ directory install all node modules and start the backend server.
-
-  ```
+  Move and adapt `service/.env.example` to `service/.env`. The values of the variables must match the entries of `.env`   
+  ```shell
   cd service
   npm install
   npm start
   ```
 
-  The backend server should listen on localhost on port 8080.
+  The backend server should listen on localhost on port 3099.
 
 - _Optional:_ to run tests execute `npm test`
 
