@@ -1,7 +1,18 @@
 @startuml
-node "Docker Compose" {
-    ["Gateway"] -r-> ["Frontend"]
-    ["Gateway"] -d-> ["Backend"]
-    ["Frontend"] -> ["Backend"]
+
+component Browser {
 }
+
+node "Docker Compose" {
+    [Gateway] <<nginx>>
+    [Frontend] <<react>>
+    [Backend] <<node.js>>
+    database "Arcadia DB" <<Postgres>>
+}
+
+Browser -r- Gateway
+Gateway -r- Frontend : request /*
+Gateway -d- Backend : request /api/*
+Backend -r- "Arcadia DB"
+
 @enduml
