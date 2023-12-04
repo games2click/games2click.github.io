@@ -1,11 +1,16 @@
-# Development
+# Getting started
+
+Arcadia uses Node.js for backend and for the frontend.
 
 ## Requirements
 
-* [Docker](http://docker.com) must be installed.
-* _Optional_: [Node.js](http://node.js) at least version 18. 
+There are multiple ways to develop Arcadia. You can use a plain Node.js 
+installation or you can use docker to run Node.js.
 
-## Development environment
+* [Node.js](http://node.js) at least version 18.
+* _Optional_: [Docker](http://docker.com).
+
+## Get the source
 
 - Clone this repository and change to root directory of the repository
 
@@ -14,48 +19,95 @@
   cd arcadia
   ```
 
-- start the database
+## Plain Node.js environment
 
-  ```shell
-  docker compose -f docker-compose.yaml -f docker-compose-build.yaml up --build database 
-  ```
+Arcadia backend needs a database to store the game state. For local development 
+the backend uses sqlite as in memory database. So there is no need to start an 
+extra database, but you can if you want to do so.
 
-- open a terminal and change to the _service_ directory install all node modules and start the backend server.
-  Move and adapt `backend/.env.example` to `backend/.env`. The values of the variables must match the entries of `.env`   
+### Backend
+To start the backend service change to the backend directory, install all 
+node modules and start the backend service.
   ```shell
   cd backend
   npm install
   npm start
   ```
+This starts the sqlite in-memory database and the backend service.
 
-  The backend server should listen on localhost on port 3099.
+If you want to execute the tests run:
+  ```shell
+  npm test
+  ```
 
-- _Optional:_ to run tests execute `npm test`
+If you want to the functional tests run: 
+  ```shell
+  npm test:e2e
+  ```
+The functional test are also executed with the sqlite database.
 
-- open a new terminal change to _client_ directory install all node module and start the frontend service.
+#### Optional: use a postgres database
+
+You can also use a postgres database as storage for the backend. You have to
+ export the database configuration as environment variables before you can start 
+the backend.
+
+```shell  
+  DB_TYPE=postgres \
+  POSTGRES_USER=arcadiabe \
+  POSTGRES_PASSWORD=arcadiabe \
+  POSTGRES_DB=arcadiabe \
+  POSTGRES_PORT=5432 \
+  POSTGRES_HOST=database \
+  npm start 
+  ```
+
+### Frontend
+
+If the backend is running you can start the frontend.
+
+  ```shell
+  cd client
+  npm install
+  npm start
+  ```
+
+If you want to execute the tests run:
+  ```shell
+  npm test
+  ```
+
+
+## docker environment
+
+To start the complete stack you can use docker compose.
+
+  ```shell
+  docker compose -f docker-compose.yaml -f docker-compose-build.yaml up --build 
+  ```
+
+Arcadia is now available at http://localhost/ you can read the docs at http://localhost/docs/
+
+### Frontend
+
+It's possible to start a new react server for the frontend development, whilst the docker compose stack is running.
 
   ```
   cd client
   npm install
   npm start
   ```
+Cause port 3000 is already blocked, React asks if you want to switch to another port. Say yes and point your browser to
+http://localhost:3001/ .
 
-  The frontend server should listen on localhost on port 3000.
-  The browser will open the page at http://localhost:3000 and **Hello World** should be displayed.
+### Database and Backend
 
-- _Optional:_ to run tests execute `npm test`
+It's possible to run only the database or the database with the frontend 
+  ```shell
+  docker compose -f docker-compose.yaml -f docker-compose-build.yaml up --build database backend 
+  ```
 
 ## Build docker images
-
-There are two ways to build Arcadia docker images, ```docker-compose``` and ```docker build```.
-
-### docker-compose
-
-To build all containers simply run
-
-```
-docker compose -f docker-compose.yaml -f docker-compose-build.yaml build
-```
 
 ### docker build
 
