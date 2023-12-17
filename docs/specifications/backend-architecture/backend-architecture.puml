@@ -1,0 +1,21 @@
+@startdot
+digraph BackendTier{
+    graph [
+		newrank = true,
+		nodesep = 0.2,
+		ranksep = 0.3,
+		overlap = true,
+		splines = false,
+    ]
+    node [
+        fixedsize = false,
+        height = 1,
+        shape = box,
+        width = 2.2
+    ]
+
+    "REST API" -> "Platform Logic"
+    "Platform Logic" -> "Data Access"
+    "Data Access" -> "arcadiadb"
+}
+@enddot
