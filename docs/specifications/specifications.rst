@@ -9,4 +9,5 @@ Specification
    prototype.md
    front-back-communication.rst
    api/apis.md
+   backend_architecture.rst
 
