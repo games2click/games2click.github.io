@@ -31,7 +31,8 @@ Backend
 - imports games dynamically from games-plugin directory
 
 Arcadia DB
--------
+----------
+
 - Postgres Database
 
 Game Module
