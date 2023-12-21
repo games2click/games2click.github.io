@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "entrypoint"
 while true; do
     sphinx-autobuild --host 0.0.0.0 . _build
 
