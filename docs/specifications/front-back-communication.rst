@@ -13,4 +13,4 @@ centered point of view.
 
 .. uml:: api-sequence/api-sequence.puml
 
-An explaination of the API can be found at `REST API resources and DTOs <api/apis.html>`_.
+An explanation of the API can be found at `OpenAPI <../../api/>`_.
