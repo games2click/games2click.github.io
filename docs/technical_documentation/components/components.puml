@@ -6,13 +6,19 @@ component Browser {
 node "Docker Compose" {
     [Gateway] <<nginx>>
     [Frontend] <<react>>
+    [certbot] <<service timer>>
     [Backend] <<node.js>>
-    database "Arcadia DB" <<Postgres>>
+    database "Database" <<Postgres>>
+    node "Volumes" {
+        [certs]
+    }
 }
 
 Browser -r- Gateway
 Gateway -r- Frontend : request /*
+Frontend -r- certs : ssl
 Gateway -d- Backend : request /api/*
-Backend -r- "Arcadia DB"
+Backend -r- "Database"
 
+certbot -u- certs : Lets Encrypt
 @enduml
