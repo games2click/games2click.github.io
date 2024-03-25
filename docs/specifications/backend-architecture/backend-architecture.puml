@@ -16,6 +16,6 @@ digraph BackendTier{
 
     "REST API" -> "Platform Logic"
     "Platform Logic" -> "Data Model"
-    "Data Model" -> "arcadiadb"
+    "Data Model" -> "Database"
 }
 @enddot

@@ -6,9 +6,9 @@ import os
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Arcadia'
-copyright = '2023, SWD22 Arcadia Team'
-author = 'SWD22 Arcadia Team'
+project = 'Games2Click'
+copyright = '2024, Games2Click Team'
+author = 'Games2Click Team'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

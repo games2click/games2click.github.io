@@ -7,7 +7,6 @@
 In the root directory of the cloned repository start the database instance:
 
   ```
-  cd arcadia
   docker run --rm --name arcadia_postgres -p 5432:5432 -v `pwd`/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=arcadiabe -e POSTGRES_DB=arcadiabe -e POSTGRES_PASSWORD=arcadiabe -d postgres:15.4
   ```
 
@@ -22,7 +21,7 @@ The env file for database connection for the backend must be named .env and be p
 For the above example it could look like the following:
 
   ```
-  $ cat arcadia/backend/.env
+  $ cat backend/.env
   export POSTGRES_USER=arcadiabe
   export POSTGRES_PASSWORD=arcadiabe
   export POSTGRES_DB=arcadiabe
@@ -37,7 +36,7 @@ Please make sure that the database container is running before proceeding and th
 To run the backend use the basic node container image `node:lts-alpine3.18`:
 
   ```
-  $ cd arcadia/backend
+  $ cd backend
   $ docker run --rm -it --entrypoint sh -v `pwd`:/work -w /work -p 3099:3099 node:lts-alpine3.18
   npm install
   npm run start:dev

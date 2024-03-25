@@ -2,7 +2,7 @@
 
 ## Description
 
-Arcadia is a web platform for simple multiplayer games. Players can either compete in an asynchronous fashion via shared links or directly via web sockets. For starters, we will implement the well-known game "Tic-Tac-Toe". 
+Games2Click is a web platform for simple multiplayer games. Players can either compete in an asynchronous fashion via shared links or directly via web sockets. For starters, we will implement the well-known game "Tic-Tac-Toe". 
 
 ## Team members
 

@@ -1,12 +1,12 @@
 # Get Started
 
-Arcadia consists of a seperate frontend and backend. Both are best served by nginx acting as a reverse proxy.
+Games2Click consists of a seperate frontend and backend. Both are best served by nginx acting as a reverse proxy.
 
 For easier use dockerfiles for all components and a docker-compose file is supplied.
 
 ## Start with prebuilt docker images
 
-To bring up the whole arcadia stack you can use the prebuild docker containers.
+To bring up the whole Games2Click stack you can use the prebuild docker containers.
 Just run:
 
   ```
@@ -25,7 +25,7 @@ To build the docker images locally you need to run:
 
 ## Run service components locally
 
-If you want to debug or develop arcadia componentsyou can run backend and frontend directly on your machine.
+If you want to debug or develop Games2Click components you can run backend and frontend directly on your machine.
 
 - open a terminal and change to the _service_ directory install all node modules and start the backend server.
 
