@@ -30,7 +30,7 @@ Backend
 - serves backend app through defined APIs
 - imports games dynamically from games-plugin directory
 
-Arcadia DB
+Database
 ----------
 
 - Postgres Database

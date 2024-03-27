@@ -1,9 +1,9 @@
-.. Arcadia documentation master file, created by
+.. Games2Click documentation master file, created by
    sphinx-quickstart on Fri Oct 20 06:14:51 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-ARCADIA - Your Digital Playground
+Games2Click - Your Digital Playground
 ===================================
 
 .. toctree::

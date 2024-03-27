@@ -7,25 +7,24 @@
 In the root directory of the cloned repository start the database instance:
 
   ```
-  cd arcadia
-  docker run --rm --name arcadia_postgres -p 5432:5432 -v `pwd`/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=arcadiabe -e POSTGRES_DB=arcadiabe -e POSTGRES_PASSWORD=arcadiabe -d postgres:15.4
+  docker run --rm --name games2click_postgres -p 5432:5432 -v `pwd`/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=games2click -e POSTGRES_DB=games2click -e POSTGRES_PASSWORD=games2click -d postgres:15.4
   ```
 
 **Note for Windows user:** In powershell use ```${PWD}``` instead of ``` `pwd` ```e.g.:
   ``` 
-docker run --rm --name arcadia_postgres -p 5432:5432 -v ${PWD}/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=arcadiabe -e POSTGRES_DB=arcadiabe -e POSTGRES_PASSWORD=arcadiabe -d postgres:15.4
+docker run --rm --name games2click_postgres -p 5432:5432 -v ${PWD}/pgdata:/var/lib/postgresql/data -e POSTGRES_USER=games2click -e POSTGRES_DB=games2click -e POSTGRES_PASSWORD=games2click -d postgres:15.4
   ```
 
 
-The env file for database connection for the backend must be named .env and be placed in root of backend, `arcadia/backend/.env`.
+The env file for database connection for the backend must be named .env and be placed in root of backend, `backend/.env`.
 
 For the above example it could look like the following:
 
   ```
-  $ cat arcadia/backend/.env
-  export POSTGRES_USER=arcadiabe
-  export POSTGRES_PASSWORD=arcadiabe
-  export POSTGRES_DB=arcadiabe
+  $ cat backend/.env
+  export POSTGRES_USER=games2click
+  export POSTGRES_PASSWORD=games2click
+  export POSTGRES_DB=games2click
   export POSTGRES_PORT=5432
   export POSTGRES_HOST=127.0.0.1
   ```
@@ -37,7 +36,7 @@ Please make sure that the database container is running before proceeding and th
 To run the backend use the basic node container image `node:lts-alpine3.18`:
 
   ```
-  $ cd arcadia/backend
+  $ cd backend
   $ docker run --rm -it --entrypoint sh -v `pwd`:/work -w /work -p 3099:3099 node:lts-alpine3.18
   npm install
   npm run start:dev

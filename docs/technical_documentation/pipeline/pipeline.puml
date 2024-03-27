@@ -14,7 +14,7 @@ cloud "Docker Hub"{
 }
 
 cloud "Reiner"{
-    component "arcadia vm"
+    component "games2click vm"
 }
 person "Web Browser"
 
@@ -24,7 +24,7 @@ person "Web Browser"
 "nodejs build & test" -d-> "docker build & deploy"
 "docker build & deploy" -d-> "public repo"
 "docker build & deploy" -l-> "ansible playbook"
-"ansible playbook" -d-> "arcadia vm"
-"arcadia vm" <- "public repo"
-"Web Browser" -u-> "arcadia vm"
+"ansible playbook" -d-> "games2click vm"
+"games2click vm" <- "public repo"
+"Web Browser" -u-> "games2click vm"
 @enduml

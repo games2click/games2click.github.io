@@ -1,10 +1,10 @@
 # Getting started
 
-Arcadia uses Node.js for backend and for the frontend.
+Games2Click uses Node.js for backend and for the frontend.
 
 ## Requirements
 
-There are multiple ways to develop Arcadia. You can use a plain Node.js 
+There are multiple ways to develop Games2Click. You can use a plain Node.js 
 installation or you can use docker to run Node.js.
 
 * [Node.js](http://node.js) at least version 18.
@@ -15,13 +15,13 @@ installation or you can use docker to run Node.js.
 - Clone this repository and change to root directory of the repository
 
   ```shell
-  git clone git@git-iit.fh-joanneum.at:swd22-hackathon/arcadia.git
-  cd arcadia
+  git clone git@github.com:games2click/platform.git
+  cd platform
   ```
 
 ## Plain Node.js environment
 
-Arcadia backend needs a database to store the game state. For local development 
+Games2Click backend needs a database to store the game state. For local development 
 the backend uses sqlite as in memory database. So there is no need to start an 
 extra database, but you can if you want to do so.
 
@@ -54,9 +54,9 @@ the backend.
 
 ```shell  
   DB_TYPE=postgres \
-  POSTGRES_USER=arcadiabe \
-  POSTGRES_PASSWORD=arcadiabe \
-  POSTGRES_DB=arcadiabe \
+  POSTGRES_USER=games2click \
+  POSTGRES_PASSWORD=games2click \
+  POSTGRES_DB=games2click \
   POSTGRES_PORT=5432 \
   POSTGRES_HOST=database \
   npm start 
@@ -86,7 +86,7 @@ To start the complete stack you can use docker compose.
   docker compose -f docker-compose.yaml -f docker-compose-build.yaml up --build 
   ```
 
-Arcadia is now available at http://localhost/ you can read the docs at http://localhost/docs/
+Games2Click is now available at http://localhost/ you can read the docs at http://localhost/docs/
 
 ### Frontend
 
@@ -116,7 +116,7 @@ To build the images seperately invoke the following command in the repository ro
 This is an example to build the backend image:
 
 ```
-docker build -f dockerfiles/backend/Dockerfile -t arcadia-backend:0.0.1alpha .
+docker build -f dockerfiles/backend/Dockerfile -t games2click-backend:0.0.1alpha .
 ```
 
 Replace all occurences of _backend_ with the names of the other containers.
