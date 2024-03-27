@@ -9,16 +9,17 @@ node "Docker Compose" {
     [certbot] <<service timer>>
     [Backend] <<node.js>>
     database "Database" <<Postgres>>
+
     node "Volumes" {
         [certs]
     }
 }
 
-Browser -r- Gateway
-Gateway -r- Frontend : request /*
-Frontend -r- certs : ssl
-Gateway -d- Backend : request /api/*
-Backend -r- "Database"
+Browser -r-> Gateway
+Gateway -u-> certs : ssl
+Gateway -r-> Frontend : request /*
+Gateway -d-> Backend : request /api/*
+Backend -r-> "Database"
 
-certbot -u- certs : Lets Encrypt
+certbot -l-> certs : Lets Encrypt
 @enduml
