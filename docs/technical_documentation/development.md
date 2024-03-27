@@ -54,9 +54,9 @@ the backend.
 
 ```shell  
   DB_TYPE=postgres \
-  POSTGRES_USER=arcadiabe \
-  POSTGRES_PASSWORD=arcadiabe \
-  POSTGRES_DB=arcadiabe \
+  POSTGRES_USER=games2click \
+  POSTGRES_PASSWORD=games2click \
+  POSTGRES_DB=games2click \
   POSTGRES_PORT=5432 \
   POSTGRES_HOST=database \
   npm start 
@@ -116,7 +116,7 @@ To build the images seperately invoke the following command in the repository ro
 This is an example to build the backend image:
 
 ```
-docker build -f dockerfiles/backend/Dockerfile -t arcadia-backend:0.0.1alpha .
+docker build -f dockerfiles/backend/Dockerfile -t games2click-backend:0.0.1alpha .
 ```
 
 Replace all occurences of _backend_ with the names of the other containers.

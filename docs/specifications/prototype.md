@@ -2,7 +2,7 @@
 
 ## Wireframe
 
-[!["Wireframe of Games2Click"](wireframe/arcadia_wireframe.png "Wireframe of Arcadia")](wireframe/arcadia_wireframe.png)
+[!["Wireframe of Games2Click"](wireframe/games2click_wireframe.png "Wireframe of Games2click")](wireframe/games2click_wireframe.png)
 
 ## Frontend walkthroughs
 
