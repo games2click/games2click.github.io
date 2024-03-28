@@ -5,6 +5,7 @@ component Browser {
 
 node "Docker Compose" {
     [Gateway] <<nginx>>
+
     [Frontend] <<react>>
     [certbot] <<service timer>>
     [Backend] <<node.js>>
@@ -13,13 +14,25 @@ node "Docker Compose" {
     node "Volumes" {
         [certs]
     }
+
+    package "Analytics" {
+        [Matomo_Web]
+        [Matomo_App]
+        database "Matomo_DB" <<mariadb>>
+    }
 }
 
 Browser -r-> Gateway
+
 Gateway -u-> certs : ssl
 Gateway -r-> Frontend : request /*
 Gateway -d-> Backend : request /api/*
-Backend -r-> "Database"
+Backend -d-> "Database"
 
 certbot -l-> certs : Lets Encrypt
+
+Gateway --> Matomo_Web : analytics.games2.click
+Matomo_Web --> Matomo_App
+Matomo_App --> "Matomo_DB"
+
 @enduml
