@@ -23,7 +23,7 @@ entity play{
   *updated_at: //timestamp : ""When was the last move?""//
 }
 
-entity playslugs{
+entity playslug{
   player of play
   ..
   + id: //number [PK]//
@@ -44,7 +44,7 @@ entity player{
 }
 
 play::game -u-  game : 1:n
-playslugs::play --  play : 1:n
-playslugs::player -r-  player : n:1
+playslug::play --  play : 1:n
+playslug::player -r-  player : n:1
 
 @enduml
