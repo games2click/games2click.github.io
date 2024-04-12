@@ -23,19 +23,28 @@ entity play{
   *updated_at: //timestamp : ""When was the last move?""//
 }
 
-entity player{
+entity playslug{
   player of play
   ..
   + id: //number [PK]//
   --
   *play: //number : [FK]//
+  *player: //number : [FK]//
   *slug: //string : ""The player slug""//
   *symbol: //string : ""Symbol of the player""//
   *created_at: //timestamp : ""useless""//
 }
 
+entity player{
+  player aka user of games2click
+  ..
+    + id: //number [PK]//
+    --
+    *browserid: //string : Unique id of browser//
+}
 
-play::game -u-  game : 1:N
-player::play --  play : 1:N
+play::game -u-  game : 1:n
+playslug::play --  play : 1:n
+playslug::player -r-  player : n:1
 
 @enduml
