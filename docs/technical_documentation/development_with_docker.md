@@ -61,7 +61,6 @@ On the first run of the database and the backend the database structure is creat
 For games to be active they need to be created in the database. This can be done through API calls:
 
   ```
-  curl -XPOST http://127.0.0.1:3099/games/ -H 'Content-Type: application/json' -d '{"name": "URNext", "active": true, "number_of_players": 5}'
   curl -XPOST http://127.0.0.1:3099/games/ -H 'Content-Type: application/json' -d '{"name": "TicTacToe", "active": true, "number_of_players": 2}'
   ```
 
