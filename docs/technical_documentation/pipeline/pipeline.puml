@@ -1,9 +1,9 @@
 @startuml
 
 actor "Developer"
-component "git-iit"
+component "GitHub Repo"
 cloud "Sedelmaier"{
-    component "gitlab-runner"
+    component "github-runner"
     component "nodejs build & test"
     component "docker build & deploy"
     component "ansible playbook"
@@ -13,14 +13,14 @@ cloud "Docker Hub"{
     component "public repo"
 }
 
-cloud "Reiner"{
+cloud "Hetzner"{
     component "games2click vm"
 }
 person "Web Browser"
 
-"Developer" -> "git-iit" : git push
-"git-iit" -r-> "gitlab-runner"
-"gitlab-runner" -> "nodejs build & test"
+"Developer" -> "GitHub Repo" : git push
+"GitHub Repo" -r-> "github-runner"
+"github-runner" -> "nodejs build & test"
 "nodejs build & test" -d-> "docker build & deploy"
 "docker build & deploy" -d-> "public repo"
 "docker build & deploy" -l-> "ansible playbook"
