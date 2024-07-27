@@ -18,7 +18,7 @@ extensions = ['myst_parser', 'sphinxcontrib.plantuml']
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-plantuml = ["java", "-jar", os.path.realpath(os.path.join(os.path.dirname(__file__), os.pardir, "/doc/plantuml.jar"))]
+plantuml = ["java", "-jar", os.path.realpath(os.path.join(os.path.dirname(__file__), os.pardir, "/opt/plantuml/plantuml.jar"))]
 
 source_suffix = {
     '.rst': 'restructuredtext',
